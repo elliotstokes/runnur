@@ -8,6 +8,7 @@ lcov.info
 *.pid
 *.gz
 
+application-config.json
 pids
 logs
 results
