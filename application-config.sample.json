@@ -1,3 +1,6 @@
 {
-	webmapId: "1234"
+	"client" : {
+		"webmapId": "1234"
+	}
+	
 }
