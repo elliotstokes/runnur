@@ -31,3 +31,5 @@ app.get("/gettoken", function(req, res) {
 app.use('/assets', express.static(__dirname + '/assets'));
 
 app.listen(1337);
+
+console.log("Runnur is running!");

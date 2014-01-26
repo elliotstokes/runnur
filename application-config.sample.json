@@ -1,6 +1,11 @@
 {
 	"client" : {
 		"webmapId": "1234"
+	},
+
+	"server" : {
+		"applicationId": "",
+		"applicationSecret" : ""
 	}
 	
 }
