@@ -9,14 +9,20 @@
 
     var _this = this;
 
-    require(["app/Router"], function(Router) {
+    require(["app/Router", "dojo/request"], function(Router, request) {
 
-      var router = new Router({
-        map: _this.map
-      });
+      request.get('./gettoken', {'handleAs' : 'json'}).then(function(tokenData) {
+
+        var router = new Router({
+          map: _this.map,
+          token: tokenData.token
+        });
 
 
-      router.route(clickEventArgs.mapPoint);
+        router.route(clickEventArgs.mapPoint);
+
+      })
+
     });
 
   }
@@ -33,26 +39,32 @@
       "esri/arcgis/utils",
       "esri/dijit/Geocoder",
       "dojo/_base/lang",
+      "dojo/request",
       "dojo/domReady!"
-    ], function(request, arcgisUtils, Geocoder, lang) {
+    ], function(request, arcgisUtils, Geocoder, lang, request) {
 
-      arcgisUtils.createMap("92309d85b34342de8514caefa3df56a5", "map").then(function(response) {
+      request.get('./config', {'handleAs' : 'json'}).then(function(config) {
 
-        //create Geocoder
-        new Geocoder({
-          map: response.map,
-          autoNavigate: true,
-          maxLocations: 20,
-          value: "Banbury"
-        }, "search");
+        arcgisUtils.createMap(config.webmapId, "map").then(function(response) {
 
-        //hook into map click to start everything
-        response.map.on("click", lang.hitch(_this, "mapClicked"));
+          //create Geocoder
+          new Geocoder({
+            map: response.map,
+            autoNavigate: true,
+            maxLocations: 20,
+            value: "Banbury"
+          }, "search");
 
-        //set global map prop to use later on.
-        _this.map = response.map;
+          //hook into map click to start everything
+          response.map.on("click", lang.hitch(_this, "mapClicked"));
 
-      });
+          //set global map prop to use later on.
+          _this.map = response.map;
+
+        });
+
+      })
+
     });
 
   };
