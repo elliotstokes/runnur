@@ -1,12 +1,8 @@
 language: node_js
 node_js:
-- '0.11'
 - '0.10'
-- '0.8'
 deploy:
   provider: heroku
   app: runnur
   api_key:
     secure: CdKx3K3uMMuQxPwfBYMjmjWoUavvUyPJzJI/ojORsQY09TL37JHbnt8rPb1OZVF9F+OMFTyFhYwsUtC7q1kX9DL6WYJVdKd98/Fq1b7T7dpMr5BleZPgClNrR3JMfGdRJRfZ15HLmHGMrVfYJjQweBSR8nYLgPLSIHnFuynkqyQ=
-  on:
-    node: 0.10
