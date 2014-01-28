@@ -6,8 +6,15 @@
 	"keywords": ["running"],
 	"dependencies": {
 		"express": "3.x",
-		"jade":"*",
-		"gpx-parse" : "*",
-		"restler" : "*"
+		"jade": "*",
+		"gpx-parse": "*",
+		"restler": "*"
+	},
+	"devDependencies": {
+		"nodeunit": "*",
+		"sandboxed-module": "*"
+	},
+	"scripts": {
+		"test": "node_modules/.bin/nodeunit tests/"
 	}
 }
