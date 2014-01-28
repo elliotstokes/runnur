@@ -51,6 +51,6 @@ app.get("/gettoken", function(req, res, next) {
 //setup static route
 app.use('/assets', express.static(__dirname + '/assets'));
 
-app.listen(1337);
+app.listen(process.env.PORT || 1337);
 
 console.log("Runnur is running!");
