@@ -3,6 +3,8 @@ Runnur [![Build Status](https://travis-ci.org/elliotstokes/runnur.png?branch=mas
 
 Application to randomly create running routes, display other routes.
 
+Auto deployed to heroku http://runnur.heroku.com
+
 ##Prerequisites
 
 Expects 2 environment variables one called appId and one called appSecret holding your esri app id and secret. These are then exchanged for a token.
