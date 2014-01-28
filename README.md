@@ -1,4 +1,4 @@
-Runnur
+Runnur [![Build Status](https://travis-ci.org/elliotstokes/runnur.png?branch=master)](https://travis-ci.org/elliotstokes/runnur)
 ======
 
 Application to randomly create running routes, display other routes.
