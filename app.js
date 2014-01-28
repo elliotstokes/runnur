@@ -31,7 +31,7 @@ app.get("/gettoken", function(req, res, next) {
 		expiration: -1
 	}, oAuth = new OAuth("https://www.arcgis.com/sharing/oauth2/token");
 
-	oAuth.getAppToken(config.server.applicationId, config.server.applicationSecret, function(error, tokenResult) {
+	oAuth.getAppToken(process.env.appId, process.env.appSecret, function(error, tokenResult) {
 		
 		if (error) {
 			next(error);
