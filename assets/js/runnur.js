@@ -9,19 +9,20 @@
 
     var _this = this;
 
-    require(["app/Router", "dojo/request"], function(Router, request) {
+    require([
+      "app/Router", 
+      "dojo/request", 
+      "esri/geometry/Point",
+      "esri/SpatialReference"
+      ], function(Router, request, Point, SpatialReference) {
 
-      request.get('./gettoken', {'handleAs' : 'json'}).then(function(tokenData) {
 
         var router = new Router({
-          map: _this.map,
-          token: tokenData.token
+          map: _this.map
         });
 
 
-        router.route(clickEventArgs.mapPoint);
-
-      })
+        router.route(clickEventArgs.mapPoint, new Point(445000, 240000, new SpatialReference(27700)));
 
     });
 

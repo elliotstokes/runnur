@@ -22,7 +22,8 @@ body {
 	position: absolute;
 	right: 28px;
 	bottom: 5px;
-	width:150px;
+	width:100%;
+	max-width:250px;
 	height:200px;
 	z-index:100;
 	background-color:white;

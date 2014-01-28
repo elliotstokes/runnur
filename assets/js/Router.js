@@ -2,16 +2,17 @@ define([
 	"dojo/_base/declare",
 	"dojo/_base/lang",
 	"esri/symbols/PictureMarkerSymbol",
+	"esri/symbols/SimpleLineSymbol",
 	"esri/graphic",
 	"esri/tasks/RouteTask",
-	"esri/tasks/RouteParameters"
+	"esri/tasks/RouteParameters",
+	"dojo/Deferred"
 
-], function(declare, lang, PictureMarkerSymbol, Graphic, RouteTask, RouteParameters) {
+], function(declare, lang, PictureMarkerSymbol, SimpleLineSymbol, Graphic, RouteTask, RouteParameters, Deferred) {
 
 	var defaultOptions = {
 		fromIcon: "assets/images/icon.png",
 		toIcon: "assets/images/icon.png",
-		token: null,
 		map: null
 	};
 
@@ -19,10 +20,36 @@ define([
 
 		constructor: function(options) {
 
-			var _route = function() {
-				var routeTask = new RouteTask("http://route.arcgis.com/arcgis/rest/services/World/Route/NAServer/Route_World");
+			var _route = function(from, to) {
+
+				//init route task
+				var routeTask = new RouteTask("./route")
+				result = new Deferred();
+
+				//createparams
 				var routeParams = new RouteParameters();
-				routeTask.solve();
+				routeParams = new esri.tasks.RouteParameters();
+				routeParams.stops = new esri.tasks.FeatureSet();
+				routeParams.stops.features[0] = from;
+				routeParams.stops.features[1] = to;
+				routeParams.returnRoutes = true;
+				routeParams.returnDirections = true;
+				routeParams.directionsLengthUnits = esri.Units.MILES;
+				routeParams.outSpatialReference = options.map.spatialReference;
+
+				//solve
+				
+				routeTask.on('solve-complete', function(solveResult) { 
+					result.resolve(solveResult);
+				});
+
+				routeTask.on('error', function(error) {
+					result.reject(error);
+				});
+
+				routeTask.solve(routeParams);
+
+				return result.promise;
 			};
 
 			var _serviceArea = function() {
@@ -33,19 +60,27 @@ define([
 			this.options = lang.mixin(defaultOptions, options);
 
 			this.route = function(from, to) {
-				var symbol = new PictureMarkerSymbol(this.options.fromIcon, 40, 55),
-					fromGraphic = new Graphic(from, symbol);
+				var fromSymbol = new PictureMarkerSymbol(this.options.fromIcon, 40, 55),
+					fromGraphic = new Graphic(from, fromSymbol),
+					toGraphic = new Graphic(to, fromSymbol),
+					_this = this;
 
 				//put icon at the bottom of the point
-				symbol.setOffset(0, 27);
+				fromSymbol.setOffset(0, 27);
 
 				//add graphic
 				this.options.map.graphics.add(fromGraphic);
+				this.options.map.graphics.add(toGraphic);
 
-				
+				_route(fromGraphic, toGraphic).then(function(route) {
+					console.log(route);
+					var theRoute = route.result.routeResults[0].route;
+					_this.options.map.setExtent(theRoute.geometry.getExtent());
+					theRoute.setSymbol(new SimpleLineSymbol());
+					_this.options.map.graphics.add(theRoute);
+				});
 				//
 				//route to point
-				//new Point(445000, 240000)
 
 
 			}

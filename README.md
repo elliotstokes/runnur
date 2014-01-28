@@ -3,6 +3,11 @@ Runnur [![Build Status](https://travis-ci.org/elliotstokes/runnur.png?branch=mas
 
 Application to randomly create running routes, display other routes.
 
+##Prerequisites
+
+Expects 2 environment variables one called appId and one called appSecret holding your esri app id and secret. These are then exchanged for a token.
+
+
 ##Wish list
 
 - auto generate routes of a certain length.
