@@ -11,7 +11,7 @@ define([
 	"esri/tasks/ServiceAreaParameters",
 	"esri/tasks/FeatureSet",
 	"esri/geometry/Point",
-	"dojo/_base/Color"
+	"dojo/_base/Color",
 	"dojo/Deferred",
 	"dojo/query"
 
