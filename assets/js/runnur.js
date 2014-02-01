@@ -22,7 +22,7 @@
         });
 
 
-        router.route(clickEventArgs.mapPoint, new Point(445000, 240000, new SpatialReference(27700)));
+        router.circularRoute(clickEventArgs.mapPoint);
 
     });
 

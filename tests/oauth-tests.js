@@ -13,7 +13,6 @@ module.exports = {
   },
 
   "Should  allow creation of oauth module": function(test) {
-
     var oauth = new OAuth("https://aurl/getToken");
     test.done();
   }

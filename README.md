@@ -9,6 +9,10 @@ Auto deployed to heroku http://runnur.heroku.com
 
 Expects 2 environment variables one called appId and one called appSecret holding your esri app id and secret. These are then exchanged for a token.
 
+##Features
+
+Will now attempt creation of a circular route, at the moment its more often than not the same way it came.
+
 
 ##Wish list
 

@@ -18,6 +18,18 @@ body {
 	z-index: 100;
 }
 
+#directions {
+	display:none;
+	position:absolute;
+	left:30px;
+	bottom:10px;
+	width:300px;
+	height: 40%;
+	overflow: auto;
+	z-index: 100;
+	background-color:white;
+}
+
 #options {
 	position: absolute;
 	right: 28px;
