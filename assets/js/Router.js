@@ -11,6 +11,7 @@ define([
 	"esri/tasks/ServiceAreaParameters",
 	"esri/tasks/FeatureSet",
 	"esri/geometry/Point",
+	"dojo/_base/Color"
 	"dojo/Deferred",
 	"dojo/query"
 
@@ -23,7 +24,11 @@ define([
 	Graphic, 
 	RouteTask, 
 	RouteParameters, 
-	ServiceAreaTask, ServiceAreaParameters, FeatureSet, Point, 
+	ServiceAreaTask, 
+	ServiceAreaParameters, 
+	FeatureSet, 
+	Point,
+	Color,
 	Deferred,
 	query) {
 
@@ -159,7 +164,7 @@ define([
 						_route(fromGraphic, fromGraphic, [toGraphic]).then(function(route) {
 							var theRoute = route.result.routeResults[0].route;
 							_this.options.map.setExtent(theRoute.geometry.getExtent());
-							theRoute.setSymbol(new SimpleLineSymbol());
+							theRoute.setSymbol(new SimpleLineSymbol(SimpleLineSymbol.STYLE_DASH, new Color("red"),3));
 							_this.options.map.graphics.add(theRoute);
 
 							console.log(route);
