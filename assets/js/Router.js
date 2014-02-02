@@ -63,7 +63,7 @@ define([
 				routeParams.returnRoutes = true;
 				routeParams.returnDirections = true;
 				routeParams.restrictionAttributes = ["Walking"];
-				routeParams.restrictUTurns =  "esriNFSBAtDeadEndsOnly";
+				routeParams.restrictUTurns =  "esriNFSBNoBacktrack";
 				routeParams.directionsLengthUnits = esri.Units.MILES;
 				routeParams.outSpatialReference = options.map.spatialReference;
 

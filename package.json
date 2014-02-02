@@ -1,20 +1,23 @@
 {
-	"name": "runnur",
-	"author": "Elliot Stokes",
-	"description": "Running route calculator",
-	"version": "0.0.1",
-	"keywords": ["running"],
-	"dependencies": {
-		"express": "3.x",
-		"jade": "*",
-		"gpx-parse": "*",
-		"restler": "*"
-	},
-	"devDependencies": {
-		"nodeunit": "*",
-		"sandboxed-module": "*"
-	},
-	"scripts": {
-		"test": "node_modules/.bin/nodeunit tests/"
-	}
+  "name": "runnur",
+  "author": "Elliot Stokes",
+  "description": "Running route calculator",
+  "version": "0.0.1",
+  "keywords": [
+    "running"
+  ],
+  "dependencies": {
+    "express": "3.x",
+    "jade": "*",
+    "gpx-parse": "*",
+    "restler": "*"
+  },
+  "devDependencies": {
+    "nodeunit": "*",
+    "sandboxed-module": "*",
+    "nock": "*"
+  },
+  "scripts": {
+    "test": "node_modules/.bin/nodeunit tests/"
+  }
 }
