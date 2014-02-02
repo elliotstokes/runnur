@@ -82,13 +82,13 @@ define([
 				return result.promise;
 			};
 
-			var _serviceArea = function(from) {
+			var _serviceArea = function(from, distance) {
 
 				var serviceAreaTask = new ServiceAreaTask("./servicearea"),
 					serviceTaskParams = new ServiceAreaParameters(),
 					result = new Deferred();
 
-				serviceTaskParams.defaultBreaks = [10];
+				serviceTaskParams.defaultBreaks = [distance];
 				serviceAreaTask.impedanceAttribute = "Miles";
 				serviceTaskParams.outSpatialReference = map.spatialReference;
 				serviceTaskParams.facilities = new FeatureSet();
@@ -143,7 +143,7 @@ define([
 
 				this.options.map.graphics.add(fromGraphic);
 
-				_serviceArea(fromGraphic).then(function(result) {
+				_serviceArea(fromGraphic, Math.floor(distance/2)).then(function(result) {
 						var theArea = result.result.serviceAreaPolygons[0];
 						_this.options.map.setExtent(theArea.geometry.getExtent());
 						theArea.setSymbol(new SimpleFillSymbol());
@@ -166,10 +166,10 @@ define([
 							_this.options.map.setExtent(theRoute.geometry.getExtent());
 							theRoute.setSymbol(new SimpleLineSymbol(SimpleLineSymbol.STYLE_DASH, new Color("red"),3));
 							_this.options.map.graphics.add(theRoute);
-
-							console.log(route);
+							console.log()
 							//rm for testing only
-							_this.displayDirections(query("#directions").style({"display":"block"}), route.reslt.routeResults[0].directions);
+							console.log(route.result);
+							_this.displayDirections(query("#directions").style({"display":"block"}), route.result.routeResults[0].directions);
 						});
 					},
 					function(error) {
@@ -179,7 +179,7 @@ define([
 			}
 
 			this.displayDirections = function(parent, features) {
-				//todo
+				
 			}
 		}
 	});

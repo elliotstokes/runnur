@@ -10,7 +10,7 @@ html(lang='en')
 		script(type="text/javascript").
 			var dojoConfig = { 
 				paths:{
-					"app": location.pathname.replace(/\/[^/]+$/, '') + "assets/js",
+					"app": location.pathname.replace(/\/[^/]+$/, '') + "assets/js/modules",
 					"knockout": "http://cdnjs.cloudflare.com/ajax/libs/knockout/3.0.0/knockout-min"
 				}
 			};
@@ -25,7 +25,7 @@ html(lang='en')
 		div(id='options')
 			h3 Options
 			div
-				input(type='text', id='txtDistance', data-bind="value: routeLength")
+				input(type='text', data-bind="value: routeLength")
 		div(id='map')
-		script(src="assets/js/runnur.js")
+		script(src="assets/js/init.js")
 
