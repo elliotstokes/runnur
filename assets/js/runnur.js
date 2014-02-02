@@ -1,5 +1,7 @@
 (function() {
 
+
+
   this.map = null;
 
   /**
@@ -36,13 +38,20 @@
     var _this = this;
 
     require([
+      "knockout",
       "dojo/request",
       "esri/arcgis/utils",
       "esri/dijit/Geocoder",
       "dojo/_base/lang",
       "dojo/request",
       "dojo/domReady!"
-    ], function(request, arcgisUtils, Geocoder, lang, request) {
+    ], function(ko, request, arcgisUtils, Geocoder, lang, request) {
+
+      this.viewModel = function() {
+        this.routeLength = ko.observable(5);
+      };
+
+      ko.applyBindings(new this.viewModel());
 
       request.get('./config', {'handleAs' : 'json'}).then(function(config) {
 
