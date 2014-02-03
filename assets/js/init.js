@@ -8,6 +8,7 @@
     "esri/dijit/Geocoder",
     "dojo/_base/lang",
     "dojo/request",
+    "dojo/parser",
     "dojo/domReady!"
   ], function(
     ko,
@@ -16,7 +17,10 @@
     arcgisUtils,
     Geocoder,
     lang,
-    request) {
+    request,
+    parser) {
+
+    parser.parse();
 
     this.map = null;
 
@@ -25,7 +29,8 @@
      */
     this.mapClicked = function(clickEventArgs) {
 
-      var _this = this;
+      var _this = this,
+        startPoint = clickEventArgs.mapPoint;
 
       require([
         "app/Router",
@@ -39,7 +44,15 @@
           map: _this.map
         });
 
-        router.circularRoute(clickEventArgs.mapPoint,_this.model.routeLength() );
+        var routeType = _this.model.routeType();
+        if (routeType === "circular") {
+          router.circularRoute(startPoint, _this.model.routeLength());
+        } else if (routeType === "linear") {
+          router.linearRoute(startPoint, _this.model.routeLength());
+        } else {
+          alert("Route type not supported");
+        }
+        //
 
       });
 

@@ -4,6 +4,7 @@ html(lang='en')
 		meta(http-equiv='Content-Type' content='text/html; charset=utf-8')
 		meta(name='viewport' content='initial-scale=1, maximum-scale=1, user-scalable=no')
 
+		link(rel="stylesheet", href="http://js.arcgis.com/3.8/js/dojo/dijit/themes/claro/claro.css")
 		link(rel='stylesheet', href='http://js.arcgis.com/3.8/js/esri/css/esri.css')
 		link(rel='stylesheet', href='assets/css/runnur.css')
 
@@ -18,14 +19,23 @@ html(lang='en')
 		script(src='http://js.arcgis.com/3.8compact/')
 
 		title Runnur
-	body
+	body(class="claro")
 		div(id='search')
 		div(id='directions')
 			h3 Directions
 		div(id='options')
-			h3 Options
-			div
-				input(type='text', data-bind="value: routeLength")
+			div(data-dojo-type="dijit/layout/TabContainer")
+				div(data-dojo-type="dijit/layout/ContentPane" title="Auto Route")
+					p Create an automated route
+					// ko foreach: routeTypes 
+					input(type="radio" data-bind="value: routeName, checked: $root.routeType")
+					span(data-bind="text: routeName")
+					// /ko 
+					input(type='text', data-bind="value: routeLength")
+				div(data-dojo-type="dijit/layout/ContentPane" title="Define")
+					p Draw a route
+				div(data-dojo-type="dijit/layout/ContentPane" title="Upload")
+					p Drag a gpx file here.
 		div(id='map')
 		script(src="assets/js/init.js")
 
