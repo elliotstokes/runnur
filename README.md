@@ -3,7 +3,7 @@ Runnur [![Build Status](https://travis-ci.org/elliotstokes/runnur.png?branch=mas
 
 Application to randomly create running routes, display other routes.
 
-Auto deployed to heroku http://runnur.heroku.com
+Auto deployed to heroku http://runnur.heroku.com. If it doesn't work I have probably run out of tokens.
 
 ##Prerequisites
 
@@ -12,6 +12,7 @@ Expects 2 environment variables one called appId and one called appSecret holdin
 ##Features
 
 Will now attempt creation of a circular route, at the moment its more often than not the same way it came.
+
 
 
 ##Wish list
