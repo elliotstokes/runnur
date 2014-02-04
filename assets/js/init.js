@@ -9,6 +9,7 @@
     "dojo/_base/lang",
     "dojo/request",
     "dojo/parser",
+    "esri/toolbars/draw",
     "dojo/domReady!"
   ], function(
     ko,
@@ -18,11 +19,16 @@
     Geocoder,
     lang,
     request,
-    parser) {
+    parser,
+    Draw) {
 
     parser.parse();
 
     this.map = null;
+
+    this.drawBar = null;
+
+    var _this = this;
 
     /**
      * fires when the map is clicked.
@@ -89,6 +95,9 @@
           //hook into map click to start everything
           response.map.on("click", lang.hitch(_this, "mapClicked"));
 
+          //create draw toolbar and attach to map
+          _this.drawBar = new Draw(response.map);
+
           //set global map prop to use later on.
           _this.map = response.map;
 
@@ -126,6 +135,16 @@
     var dropZone = document.getElementById('drop-zone');
     dropZone.addEventListener('dragover', handleDragOver, false);
     dropZone.addEventListener('drop', handleFileSelect, false);
+
+    
+
+    function drawButtonClick(evt) {
+      alert("draw a route.")
+      //_this.drawBar.activate('polyline');
+    }
+    //setup click events
+    var drawButton = document.getElementById('draw-button');
+    drawButton.addEventListener('click', drawButtonClick, false);
 
 
   });
