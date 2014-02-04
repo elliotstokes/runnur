@@ -44,6 +44,12 @@ body {
 
 }
 
+#drop-zone {
+	height:100%;
+	width:100%;
+	border: 2px dashed gray;
+}
+
 .simpleGeocoder .esriGeocoder {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
